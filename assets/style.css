@@ -1,0 +1,34 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#modal.is-not-opened {
+    display: none;
+    z-index: 1000;
+}
+
+#new-reservation-form.is-not-opened {
+    display: none;
+}
+
+#modal.is-opened {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px 30px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+
+#new-reservation-form {
+    display: block;
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+}
