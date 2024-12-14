@@ -83,10 +83,11 @@ app.layout = html.Div(
 
 # callback to open modal window for new reservations when the button is clicked
 @app.callback(
-    [Output(component_id='modal', component_property='className'),
-     Output(component_id='new-reservation-form', component_property='className'),
-     Output(component_id='background-overlay', component_property='className')], 
-    [Input(component_id="open-modal-btn", component_property="n_clicks")]
+    [Output(component_id='modal', component_property='className', allow_duplicate=True),
+     Output(component_id='new-reservation-form', component_property='className', allow_duplicate=True),
+     Output(component_id='background-overlay', component_property='className', allow_duplicate=True)], 
+    [Input(component_id="open-modal-btn", component_property="n_clicks")],
+    prevent_initial_call=True
 )
 def toggle_modal(n_clicks):
     if n_clicks:
@@ -95,11 +96,16 @@ def toggle_modal(n_clicks):
 
 # callback to close the modal window when the background is clicked
 @app.callback(
-    Input(component_id="background-overlay", component_property="n_clicks")
+    [Output(component_id='modal', component_property='className', allow_duplicate=True),
+     Output(component_id='new-reservation-form', component_property='className', allow_duplicate=True),
+     Output(component_id='background-overlay', component_property='className', allow_duplicate=True)],
+    Input(component_id="background-overlay", component_property="n_clicks"),
+    prevent_initial_call=True
 )
 def close_modal(n_clicks):
     if n_clicks:
-        print("Background clicked")
+        return "is-not-opened", "is-not-opened", "is-not-opened"
+    return "is-opened", "is-opened", "is-opened"
 
 if __name__ == "__main__":
     app.run(debug=True)

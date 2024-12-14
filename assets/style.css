@@ -20,12 +20,6 @@
     background-color: white;
 }
 
-#new-reservation-form.is-not-opened {
-    display: none;
-    z-index: 1000;
-    position: fixed;
-}
-
 #new-reservation-form {
     display: block;
     z-index: 1000;
@@ -35,6 +29,12 @@
     height: 100%;
     padding: 50px 30px;
     cursor: pointer;
+    user-select: none;
+}
+
+#new-reservation-form.is-not-opened {
+    display: none;
+    position: fixed;
 }
 
 #background-overlay.is-not-opened {
