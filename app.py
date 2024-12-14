@@ -1,4 +1,4 @@
-from dash import Dash, html
+from dash import Dash, html, Input, Output
 import dash_ag_grid as dag
 from utils import get_reservations_data
 
@@ -55,6 +55,29 @@ app.layout = html.Div(
                 "borderRadius": "100%",
                 "cursor": "pointer",
             }
+        ),
+
+        html.Div(
+            id='modal',
+            children=[
+                html.Div(
+                    id='try',
+                    children=[
+                        html.H2("Nuova Prenotazione", style={"textAlign": "center"})
+                    ],
+                    style={
+                        "display": "block",
+                        "width": "50%",
+                        "padding": "50px 20px",
+                        "background-color": "white",
+                        "textAlign": "center",
+                    }
+                )
+            ],
+            style={
+                "display": "none",
+                "zIndex": "1000",
+            }
         )
     ],
     style={
@@ -64,6 +87,16 @@ app.layout = html.Div(
         "padding": "0"
     }
     )
+
+@app.callback(
+    [Output(component_id='modal', component_property='style'),
+     Output(component_id='try', component_property='style')], 
+    [Input(component_id="open-modal-btn", component_property="n_clicks")]
+)
+def toggle_modal(n_clicks):
+    if n_clicks:
+        return [{"display": "block", "position": "fixed", "top": "50%", "left": "50%", "transform": "translate(-50%, -50%)", "background": "white"}, {"display":"block"}]
+    return {"display": "none"}, {"display": "none"}
 
 if __name__ == "__main__":
     app.run(debug=True)
