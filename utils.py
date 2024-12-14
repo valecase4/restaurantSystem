@@ -21,8 +21,8 @@ def get_reservations_data(db):
         reservation['Booking Name'] = row[3]
         reservation['Phone Number'] = row[4]
         reservation['People Number'] = row[5]
-        reservation["Edit"] = "Modifica"
-        reservation["Delete"] = "Elimina"
+        reservation["Edit"] = ""
+        reservation["Delete"] = ""
 
         data.append(reservation)
 
