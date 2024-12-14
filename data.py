@@ -20,5 +20,6 @@ reservations = [
 conn = sqlite3.connect("test.db")
 cur = conn.cursor()
 
-cur.executemany("INSERT INTO reservations VALUES (?, ?, ?, ?, ?, ?)", reservations)
-conn.commit()
+# cur.executemany("INSERT INTO reservations VALUES (?, ?, ?, ?, ?, ?)", reservations)
+
+conn.close()

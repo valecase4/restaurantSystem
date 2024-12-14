@@ -1,4 +1,5 @@
 import sqlite3
+from utils import get_reservations_data
 
 conn = sqlite3.connect("test.db")
 
