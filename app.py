@@ -67,6 +67,10 @@ app.layout = html.Div(
                     ],
                 )
             ],
+        ),
+
+        html.Div(
+            id='background-overlay'
         )
     ],
     style={
@@ -77,15 +81,25 @@ app.layout = html.Div(
     }
     )
 
+# callback to open modal window for new reservations when the button is clicked
 @app.callback(
     [Output(component_id='modal', component_property='className'),
-     Output(component_id='new-reservation-form', component_property='className')], 
+     Output(component_id='new-reservation-form', component_property='className'),
+     Output(component_id='background-overlay', component_property='className')], 
     [Input(component_id="open-modal-btn", component_property="n_clicks")]
 )
 def toggle_modal(n_clicks):
     if n_clicks:
-        return "is-opened", "is-opened"
-    return "is-not-opened", "is-not-opened"
+        return "is-opened", "is-opened", "is-opened"
+    return "is-not-opened", "is-not-opened", "is-not-opened"
+
+# callback to close the modal window when the background is clicked
+@app.callback(
+    Input(component_id="background-overlay", component_property="n_clicks")
+)
+def close_modal(n_clicks):
+    if n_clicks:
+        print("Background clicked")
 
 if __name__ == "__main__":
     app.run(debug=True)
