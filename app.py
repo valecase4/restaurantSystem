@@ -9,12 +9,59 @@ reservations = get_reservations_data("test.db")
 app = Dash(__name__)
 
 columnDefs = [
-    { 'field': 'ID' },
-    { 'field': 'Booking Date' },
-    { 'field': 'Booking Time'},
-    { 'field': 'Booking Name' },
-    { 'field': 'Phone Number' },
-    { 'field': 'People Number' },
+    { 
+        'field': 'ID', 
+        'headerName': 'ID Prenotazione', 
+        "cellStyle": {"textAlign": "center"},
+        "headerClass": "header-center",
+    },
+    { 
+        'field': 'Booking Date', 
+        'headerName': 'Data Prenotazione', 
+        "cellStyle": {"textAlign": "center"},
+        "headerClass": "header-center"
+    },
+    { 
+        'field': 'Booking Time', 
+        'headerName': 'Orario', 
+        "cellStyle": {"textAlign": "center"},
+        "headerClass": "header-center"
+    },
+    { 
+        'field': 'Booking Name', 
+        'headerName': 'Nome', 
+        "cellStyle": {"textAlign": "center"},
+        "headerClass": "header-center"
+    },
+    { 
+        'field': 'Phone Number', 
+        'headerName': 'Recapito', 
+        "cellStyle": {"textAlign": "center"},
+        "headerClass": "header-center"
+    },
+    { 
+        'field': 'People Number', 
+        'headerName': 'Persone', 
+        "cellStyle": {"textAlign": "center"},
+        "headerClass": "header-center"
+    },
+    {
+        'headerName': "Tavolo"
+    },
+    {
+        'field': 'Edit',
+        "headerName": "Modifica", 
+        "cellRenderer": "Button", 
+        "cellRendererParams": {"className": "btn btn-edit"},
+        "cellStyle": {"textAlign": "center"}
+    },
+    {
+        'field': 'Delete',
+        "headerName": "Elimina", 
+        "cellRenderer": "Button", 
+        "cellRendererParams": {"className": "btn btn-delete"},
+        "cellStyle": {"textAlign": "center"}
+    },
 ]
 
 grid = dag.AgGrid(
@@ -24,7 +71,7 @@ grid = dag.AgGrid(
     defaultColDef={
         "sortable": True,
         "filter": True,
-        "resizable": True,
+        "resizable": False,
         "flex": 1
     },
     style={
